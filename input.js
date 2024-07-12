@@ -20,7 +20,7 @@ const handleUserInput = function (key) {
   }
 //when player presses 't' it can send message to server
   if (key === 't'){
-    connection.write('Hello this will be for messages.');
+    connection.write('Say: Hello this will be for messages.');
   }
 
 
