@@ -1,5 +1,6 @@
 
-let {KEY} = require('./constants')
+let {MOVE_MAP, MESSAGE_MAP} = require('./constants')
+
 
 let connection;//Makes the instance of a conection available to use globaly
 
@@ -10,16 +11,21 @@ let connection;//Makes the instance of a conection available to use globaly
  * @param {string} key - The key pressed by the user.
  */
 const handleUserInput = function (key) {
+  
+  let miniKey = key.toLowerCase();//Just incase the capslock key is on.
 
-
-
-  if (key === '\u0003') {//check for ctrl+c to close the progam or IT WILL NEVER END... IT WILL GO ON FOREVER and YOU CAN NEVER STOP IT unless you close the terminal !!
+  if (miniKey === '\u0003') {//check for ctrl+c to close the progam or IT WILL NEVER END... IT WILL GO ON FOREVER and YOU CAN NEVER STOP IT unless you close the terminal !!
     console.log(`Closing the connection...`);
     process.exit();
-
   }
- //calls the Default key map from constant
-  connection.write(KEY[key]);
+
+  //calls the Default key map from constant
+  if (miniKey in MOVE_MAP) {//Ignore any command that is not in the KEY object list
+    connection.write(MOVE_MAP[miniKey]);
+  }
+  else if (miniKey in MESSAGE_MAP){
+    connection.write(MESSAGE_MAP[miniKey])
+  }
 
 }
 
