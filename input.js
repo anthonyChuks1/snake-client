@@ -1,5 +1,5 @@
 
-const readline = require('readline')
+let {KEY} = require('./constants')
 
 let connection;//Makes the instance of a conection available to use globaly
 
@@ -18,40 +18,9 @@ const handleUserInput = function (key) {
     process.exit();
 
   }
-//when player presses 't' it can send message to server
-  if (key === 't'){
-    connection.write('Say: Hello this will be for messages.');
-  }
+ //calls the Default key map from constant
+  connection.write(KEY[key]);
 
-
-
-  switch (key) {
-    case 'w':
-      //console.log('Move: up');
-      connection.write('Move: up');
-
-      break;
-
-
-    case 'a':
-      //console.log('Move: left');
-      connection.write('Move: left');
-      break;
-
-
-    case 's':
-      //console.log('Move: down');
-      connection.write('Move: down');
-      break;
-
-
-    case 'd':
-      //console.log('Move: right');
-      connection.write('Move: right');
-      break;
-
-    
-  }
 }
 
 
