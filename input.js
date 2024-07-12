@@ -1,41 +1,56 @@
 
+const readline = require('readline')
+
 let connection;//Makes the instance of a conection available to use globaly
+
+
 
 /**
  * Handles user input from stdin.
  * @param {string} key - The key pressed by the user.
  */
 const handleUserInput = function (key) {
+
+
+
   if (key === '\u0003') {//check for ctrl+c to close the progam or IT WILL NEVER END... IT WILL GO ON FOREVER and YOU CAN NEVER STOP IT unless you close the terminal !!
     console.log(`Closing the connection...`);
     process.exit();
 
   }
+//when player presses 't' it can send message to server
+  if (key === 't'){
+    connection.write('Hello this will be for messages.');
+  }
+
+
 
   switch (key) {
     case 'w':
       //console.log('Move: up');
       connection.write('Move: up');
+
       break;
-      
+
 
     case 'a':
       //console.log('Move: left');
       connection.write('Move: left');
       break;
-      
+
 
     case 's':
       //console.log('Move: down');
       connection.write('Move: down');
       break;
-      
+
 
     case 'd':
       //console.log('Move: right');
       connection.write('Move: right');
       break;
-      
+
+    
   }
 }
 
